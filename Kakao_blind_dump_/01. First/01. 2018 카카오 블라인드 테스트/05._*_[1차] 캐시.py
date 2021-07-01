@@ -1,24 +1,27 @@
-import heapq
+from collections import deque
 
 
 def solution(cacheSize, cities):
     answer = 0
+    buffer = deque()
 
-    lru = {}
+    if cacheSize == 0:
+        return len(cities) * 5
 
     for city in cities:
         city = city.lower()
-        isin = False
-        while lru:
-            s, c = heapq.heappop(lru)
-            if c == city:
-                isin = True
-                heapq.heappush(lru, (s + 1, c))
-                break
 
-        if not isin:
-            heapq.heappush(lru, [0, city])
+        if city in buffer:
+            answer += 1
+            buffer.remove(city)
+
+        else:
             answer += 5
+
+        buffer.append(city)
+
+        if len(buffer) > cacheSize:
+            buffer.popleft()
 
     return answer
 
