@@ -1,7 +1,5 @@
 def solution(dartResult):
-    answer = 0
-    for 
-    return
+    answer = []
 
 
 # 37
