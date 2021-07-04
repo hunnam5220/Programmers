@@ -31,6 +31,7 @@ def solution(msg):
                 if b:
                     break
 
+        else:
             now = q.popleft()
             answer.append(base_dict[now])
             base_dict[msg[start: start + 2]] = dict_idx
