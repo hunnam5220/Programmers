@@ -1,37 +1,24 @@
-class Trie():
-    def __init__(self):
-        self.next = dict()
-        self.value = 0
-
-
 def solution(words):
-    answer = 0
-    tree = Trie()
-    for word in words:
-        subtree = tree
-        for idx, val in enumerate(word):
-            subtree.value += 1
-            if val not in subtree.next:
-                subtree.next[val] = Trie()
-            subtree = subtree.next[val]
-            if idx == len(word) - 1:
-                subtree.value += 1
+    words.sort()
+    trie = {}
 
     for word in words:
-        subtree = tree
-        counts = 0
-        for idx, val in enumerate(word):
-            if subtree.value == 1:
-                answer += counts
-                break
-            elif idx == len(word) - 1:
-                answer += counts + 1
-                break
-            else:
-                subtree = subtree.next[val]
-                counts += 1
+        cur_trie = trie
+        for w in word:
+            cur_trie.setdefault(w, [0, {}])
+            cur_trie[w][0] += 1
+            cur_trie = cur_trie[w][1]
 
-    return answer
+    result = 0
+    for word in words:
+        cur_trie = trie
+        for i in range(len(word)):
+            if cur_trie[word[i]][0] == 1:
+                break
+            cur_trie = cur_trie[word[i]][1]
+        result += 1 + i
+
+    return result
 
 
 # 7
