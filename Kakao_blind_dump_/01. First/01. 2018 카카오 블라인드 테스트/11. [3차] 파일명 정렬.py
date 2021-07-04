@@ -1,3 +1,6 @@
+import re
+
+
 def solution(files):
     answer = []
     arr = []
@@ -7,7 +10,7 @@ def solution(files):
     j = 1
 
     for file in files:
-        idx, s, tmp,  = 0, '', []
+        idx, s, tmp, = 0, '', []
         for f in file:
             p = False
             if modes[idx] == 0 and not f.isnumeric():
@@ -61,8 +64,16 @@ def solution(files):
     return answer
 
 
+def solution1(files):
+    def key_function(fn):
+        head, number, tail = re.match(r'([a-z-. ]+)(\d{,5})(.*)', fn).groups()
+        return [head, int(number)]
+
+    return sorted(files, key=lambda x: key_function(x.lower()))
+
+
 # ["img1.png", "IMG01.GIF", "img02.png", "img2.JPG", "img10.png", "img12.png"]
-print(solution(["img000000012", "img10.png", "img00002.png", "img1.png", "IMG01.GIF", "img2.JPG"]))
+print(solution1(["img000000012", "img10.png", "img00002.png", "img1.png", "IMG01.GIF", "img2.JPG"]))
 
 # ["A-10 Thunderbolt II", "B-50 Superfortress", "F-5 Freedom Fighter", "F-14 Tomcat"]
-print(solution(["F-5 Freedom Fighter", "B-50 Superfortress", "A-10 Thunderbolt II", "F-14 Tomcat"]))
+print(solution1(["F-5 Freedom Fighter", "B-50 Superfortress", "A-10 Thunderbolt II", "F-14 Tomcat"]))
