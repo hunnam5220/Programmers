@@ -1,3 +1,8 @@
+"""
+연결리스트(링크드 리스트)로도 풀이를 해보는게 좋다
+"""
+
+
 import sys
 sys.setrecursionlimit(10**6)
 
