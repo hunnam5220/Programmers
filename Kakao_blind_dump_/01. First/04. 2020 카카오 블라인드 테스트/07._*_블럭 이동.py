@@ -3,6 +3,7 @@ from collections import deque
 dx, dy = [1, 0, 0, -1], [0, 1, -1, 0]
 
 
+# 여기 조심해야 함
 def get_next_pos(pos, new_board):
     next_pos = []
     pos = list(pos)
