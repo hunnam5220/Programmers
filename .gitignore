@@ -127,3 +127,5 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+.DS_Store
+Kakao_blind_dump_/.DS_Store
